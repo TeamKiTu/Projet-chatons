@@ -60,9 +60,8 @@
     <%total_amount = total_price.inject(0){|sum,x| sum + x }%>
         <p class = "m-2">Prix total: <%= add_zero(total_amount) %> € &nbsp</p>
 
-      <form action = <%=checkout_create_path(total_amount: total_amount, orders: @orders)%> method ="POST" data-turbo="false">
-        <button type="submit" class="m-2 bg-amber-500 hover:bg-amber-600 text-white font-bold py-1 px-8 border-b-4 border-amber-600 hover:border-amber-700 rounded">Confirmer la commande</button>
-      </form>
+        <%= button_to "Confirmer la commande", checkout_create_path(total_amount: total_amount, orders: @orders), class: "m-2 bg-amber-500 hover:bg-amber-600 text-white font-bold py-1 px-8 border-b-4 border-amber-600 hover:border-amber-700 rounded", data: {turbo: false} %>
+
     </div>
       <%else%>
       <div class = "text-center py-2">
