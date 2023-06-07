@@ -3,11 +3,14 @@ class CheckoutController < ApplicationController
 
 
   def create
-
-    # @event = Event.find(params['event_id'])
-    # session[:event_id] = @event.id
-
-    @total_amount = params[:total_amount].to_f;
+    
+    @orders = params[:orders]
+    puts "$"*100
+    @orders = @orders.first
+    puts @orders
+    puts "$"*100
+    session[:orders] = @orders
+    @total_amount = params[:total_amount].to_d;
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [
@@ -23,8 +26,8 @@ class CheckoutController < ApplicationController
         },
       ],
       mode: 'payment',
-      success_url: orders_success_url + '?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: orders_cancel_url
+      success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: checkout_cancel_url
     )
    
     redirect_to @session.url, allow_other_host: true
@@ -35,9 +38,13 @@ class CheckoutController < ApplicationController
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
     # # Récupérer l'ID de l'évènement depuis la session
-    # @event = Event.find(session[:event_id])
-    # # Effacer l'ID de l'évènement de la session
-    # session.delete(:event_id)
+    puts "*"*100
+    @orders = params[:orders]
+    puts @orders
+    puts params[:orders]
+    puts "*"*100
+    # Effacer l'ID de l'évènement de la session
+    session.delete(:orders)
     # # Créer le lien de participation
     # Attendance.create!(stripe_customer_id: params[:session_id], attendee_id: current_user.id, event_id: @event.id)
   end
