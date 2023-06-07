@@ -73,11 +73,11 @@ Cart.all.each do |cart|
 end
 
 
-# 10.times do
-#   user = User.all.sample
-#   order = Order.create(user_id: user.id)
-#   rand(1..5).times do
-#     item = Item.all.sample
-#     OrderItem.create(order_id: order.id, item_id: item.id)
-#   end
-# end
+10.times do
+  user = User.all.sample
+  order = Order.create(user_id: user.id)
+  rand(1..5).times do
+    item = Item.all.sample
+    OrderItem.create(order_id: order.id, item_id: item.id)
+  end
+end
