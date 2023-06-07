@@ -1,20 +1,58 @@
 require 'faker'
 
 User.destroy_all
-Item.destroy_all
+Item.delete_all
 Order.destroy_all
 OrderItem.destroy_all
 CartItem.destroy_all
 
 
+#10.times do
+#  Item.create(
+#    title: Faker::Commerce.product_name,
+#    description: Faker::Lorem.paragraph,
+#    price: "%.2f"%rand(0.0..100.0),
+#    image_url: "https://loremflickr.com/#{rand(290..300)}/#{rand(290..300)}/kitten"
+#  )
+#end
+
+s3 = Aws::S3::Resource.new(
+  region: 'eu-west-3', # change this to your AWS region
+  access_key_id: ENV['AMAZON_ACCESS_KEY_ID'],
+  secret_access_key: ENV['AMAZON_SECRET_ACCESS_KEY']
+)
+
+bucket = s3.bucket('grgb') # change this to your bucket name
+
 10.times do
-  Item.create(
+  item = Item.create(
     title: Faker::Commerce.product_name,
     description: Faker::Lorem.paragraph,
     price: "%.2f"%rand(0.0..100.0),
-    image_url: "https://loremflickr.com/#{rand(290..300)}/#{rand(290..300)}/kitten"
   )
+
+  # Create a temporary local image file
+  image_file_path = "/tmp/#{SecureRandom.uuid}.jpg"
+  open(image_file_path, 'wb') do |file|
+    file << URI.open("https://loremflickr.com/#{rand(290..300)}/#{rand(290..300)}/kitten").read
+  end
+
+  # Upload the image to S3
+  image_name = "item_#{SecureRandom.uuid}.jpg"
+  obj = bucket.object(image_name)
+  obj.upload_file(image_file_path)
+
+  # Attach the image to the item
+  item.image.attach(
+    io: File.open(image_file_path),
+    filename: image_name,
+    content_type: 'image/jpg'
+  )
+
+  # Delete the temporary local image file
+  File.delete(image_file_path) if File.exist?(image_file_path)
 end
+
 
 
 10.times do
