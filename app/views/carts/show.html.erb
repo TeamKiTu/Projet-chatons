@@ -26,7 +26,8 @@
       <% @items_in_cart.each do |item| %>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 powder">
           <td class="w-32 p-4">
-            <%= image_tag item.item.image_url, class:"pic-item" %>
+            <%= image_tag rails_blob_path(item.item.image), class:"pic-item" if item.item.image.attached? %>
+
           </td>
           <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white text-center">
             <%= item.item.title %>

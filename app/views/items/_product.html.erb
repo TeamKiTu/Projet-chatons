@@ -32,9 +32,12 @@
               <% end %>
               <% used_items << item %>
               <div class="flex-1 px-2">
-                  <%= link_to item_path(item) do %>
-                    <img src="<%= item.image_url %>" class="rounded" alt="Item Image">
+                <%= link_to item_path(item) do %>
+                  <% if item.image.attached? %>
+                    <%= image_tag item.image, class: "rounded", alt: "Item Image" %>
                   <% end %>
+                <% end %>
+
               </div>
             <% end %>
           </div>
