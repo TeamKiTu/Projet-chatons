@@ -4,10 +4,13 @@ class ItemsController < ApplicationController
   # GET /items or /items.json
   def index
     @items = Item.all
+    @cart_item = CartItem.new
   end
 
   # GET /items/1 or /items/1.json
   def show
+    @items = Item.all
+    @cart_item = CartItem.new
   end
 
   # GET /items/new
