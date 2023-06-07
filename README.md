@@ -1,24 +1,18 @@
-# README
+#Projet Chatons sem10
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<p align="center">
+   <a href="https://forthebadge.com"><img src="https://forthebadge.com/images/badges/no-ragrets.svg"></a>
+  <a href="https://forthebadge.com"><img src="https://forthebadge.com/images/badges/powered-by-electricity.svg"></a>
+</p>
 
-Things you may want to cover:
 
-* Ruby version
+Made with passion and care ❤️
 
-* System dependencies
 
-* Configuration
+## Technologies
+- Ruby
+- html/css
+- Rails7
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
