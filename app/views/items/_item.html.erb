@@ -1,7 +1,11 @@
 <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow back-total relative">
+
   <div class="ind-pic">
-    <img src="<%= item.image_url %>" class="w-150 h-150 p-8 ind-item" alt="product image"/>
+    <% if item.image.attached? %>
+      <%= image_tag item.image, class: "w-150 h-150 p-8 ind-item", alt: "product image" %>
+    <% end %>
   </div>
+
   <div class="px-5 pb-5">
     <div id="texts" class="text-center">
       <a href="#">
