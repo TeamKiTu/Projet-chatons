@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  after_create :send_welcome
   has_one :cart
 
   devise :database_authenticatable, :registerable,
@@ -13,6 +14,11 @@ class User < ApplicationRecord
   after_update_commit :send_password_change_email, if: :password_changed
 
   private
+
+  def send_welcome
+    UserMailer.welcome(self).deliver_now
+  end
+
 
   def send_password_change_email
     UserMailer.password_changed(self).deliver_now
