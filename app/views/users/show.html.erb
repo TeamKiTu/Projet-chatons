@@ -1,0 +1,120 @@
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table id="mainTable" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="text-xs uppercase nav-color powder">
+      <tr>
+        <th scope="col" class="px-6 py-3 text-center">
+          Commandes passées
+        </th>
+        <th scope="col" class="px-6 py-3 text-center">
+          Date de l'achat
+        </th>
+        <th scope="col" class="px-6 py-3 text-center">
+          Prix total
+        </th>
+        <th scope="col" class="px-6 py-3 text-center">
+          Voir détail de la commande
+        </th>
+      </tr>
+    </thead>
+    <tbody class="nav-item-color powder">
+      <tr>
+        <td class="px-6 py-3">
+          0015AD484T
+        </td>
+        <td class="px-6 py-3">
+          01/12/2022
+        </td>
+        <td class="px-6 py-3">
+          232,99€
+        </td>
+        <td class="px-6 py-3">
+          <button onclick="expandTable(this)">Afficher détails</button>
+        </td>
+      </tr>
+      <tr>
+        <td class="px-6 py-3">
+          0015AD484T
+        </td>
+        <td class="px-6 py-3">
+          01/12/2022
+        </td>
+        <td class="px-6 py-3">
+          232,99€
+        </td>
+        <td class="px-6 py-3">
+          <button onclick="expandTable(this)">Afficher détails</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<script>
+  function expandTable(button) {
+  var mainTable = document.getElementById("mainTable");
+  var rowIndex = button.parentNode.parentNode.rowIndex;
+
+  var expandedRow = mainTable.insertRow(rowIndex + 1);
+  var expandedCell = expandedRow.insertCell(0);
+  expandedCell.colSpan = mainTable.rows[0].cells.length;
+
+  var expandedTable = document.createElement("table");
+  expandedTable.className = "w-full text-sm text-left text-gray-500 dark:text-gray-400";
+  expandedTable.innerHTML = `
+    <thead class="text-xs uppercase nav-item-color powder">
+      <tr>
+        <th scope="col" class="px-6 py-3 text-center">
+          Produits
+        </th>
+        <th scope="col" class="px-6 py-3 text-center">
+          Quantité
+        </th>
+        <th scope="col" class="px-6 py-3 text-center">
+          Prix unitaire
+        </th>
+        <th scope="col" class="px-6 py-3 text-center">
+          Prix total
+        </th>
+      </tr>
+    </thead>
+    <tbody class="nav-item-color powder">
+      <tr>
+        <td class="px-6 py-3">
+          Article 1
+        </td>
+        <td class="px-6 py-3">
+          2
+        </td>
+        <td class="px-6 py-3">
+          50€
+        </td>
+        <td class="px-6 py-3">
+          100€
+        </td>
+      </tr>
+      <tr>
+        <td class="px-6 py-3">
+          Article 2
+        </td>
+        <td class="px-6 py-3">
+          1
+        </td>
+        <td class="px-6 py-3">
+          80€
+        </td>
+        <td class="px-6 py-3">
+          80€
+        </td>
+      </tr>
+    </tbody>
+  `;
+
+  expandedCell.appendChild(expandedTable);
+
+  button.onclick = function() {
+    expandedTable.classList.toggle("hidden");
+    button.innerText = expandedTable.classList.contains("hidden") ? "Afficher détails" : "Masquer détails";
+  };
+}
+</script>

@@ -20,7 +20,9 @@
       </tr>
     </thead>
     <tbody>
+    
       <% total_price = [] %>
+      <% @orders = [] %>
       <% @items_in_cart.each do |item| %>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 powder">
           <td class="w-32 p-4">
@@ -37,7 +39,7 @@
             </div>
           </td>
           <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white text-center">
-            <%= total_item = item.item.price %>€
+            <%= total_item = add_zero(item.item.price) %> €
           </td>
           <td class="px-6 py-4 text-center">
             <%= button_to "Retirer", cart_item_path(item), class:"font-medium text-red-600 dark:text-red-500 hover:underline", method: :delete %>
@@ -45,20 +47,28 @@
         </tr>
         <% total_item = item.item.price %>
         <% total_price << total_item %>
+        <% @orders << item.item %>
       <% end %>
     </tbody>
   </table>
+
   <div class="nav-item-color powder">
+    <%if @items_in_cart.length>0%>
     <div class="total">
+
     <%total_amount = total_price.inject(0){|sum,x| sum + x }%>
-      <p class = "m-2">Prix total: <%= total_amount %>€ &nbsp</p>
+        <p class = "m-2">Prix total: <%= add_zero(total_amount) %> € &nbsp</p>
 
-      <form action = <%=orders_path(total_amount: total_amount)%> method ="POST" data-turbo="false">
-
-      <button type="submit" class="m-2 bg-amber-500 hover:bg-amber-600 text-white font-bold py-1 px-8 border-b-4 border-amber-600 hover:border-amber-700 rounded">Payer</button>
-    </form>
-
+      <form action = <%=checkout_create_path(total_amount: total_amount, orders: @orders)%> method ="POST" data-turbo="false">
+        <button type="submit" class="m-2 bg-amber-500 hover:bg-amber-600 text-white font-bold py-1 px-8 border-b-4 border-amber-600 hover:border-amber-700 rounded">Confirmer la commande</button>
+      </form>
     </div>
+      <%else%>
+      <div class = "text-center py-2">
+        <p>Panier vide. &nbsp</p>
+      </div>
+    <%end%>
+    
   </div>
 
 </div>
