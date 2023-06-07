@@ -29,13 +29,14 @@ class OrdersController < ApplicationController
 
   def create
     @total_amount = params[:total_amount];
+
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [
         {
           price_data: {
             currency: 'eur',
-            unit_amount: @total_amount.to_i*100,
+            unit_amount: (@total_amount.to_f*100).to_i,
             product_data: {
               name: 'Rails Stripe Checkout',
             },
