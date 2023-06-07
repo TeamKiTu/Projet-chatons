@@ -1,17 +1,16 @@
 Rails.application.routes.draw do
-  get 'orders/new'
-  get 'orders/create'
-  get 'cart_items/create'
-  get 'cart_items/update'
-  get 'cart_items/destroy'
-  get 'carts/show'
-  get 'carts/create'
-  get 'carts/update'
-  get 'carts/destroy'
+  resources :orders, only: [:new, :create]
+  
+  resources :carts, except:[:index, :new, :edit]
+  resources :cart_items, only:[:create, :update, :destroy]
   devise_for :users
   resources :items
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  root to: "items#index"
+  scope '/orders' do
+    get 'success', to: 'orders#success', as: 'orders_success'
+    get 'cancel', to: 'orders#cancel', as: 'orders_cancel'
+  end
+
+  root "items#index"
+
 end
