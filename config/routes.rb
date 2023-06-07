@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :carts, except:[:index, :new, :edit]
   resources :cart_items, only:[:create, :update, :destroy]
   devise_for :users
+  resources :users, only:[:show]
   resources :items
 
   scope '/checkout' do

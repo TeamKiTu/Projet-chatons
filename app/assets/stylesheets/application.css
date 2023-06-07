@@ -150,3 +150,8 @@ footer {
 .bg-form{
   background-color: #756177 !important;
 }
+
+#expandedTable {
+  margin-left: -10px;
+  margin-right: -10px;
+}
