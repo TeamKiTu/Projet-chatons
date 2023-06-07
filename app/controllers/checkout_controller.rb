@@ -1,16 +1,17 @@
 class CheckoutController < ApplicationController
-  protect_from_forgery with: :null_session
-
 
   def create
-    
-    @orders = params[:orders]
-    puts "$"*100
-    @orders = @orders.first
-    puts @orders
-    puts "$"*100
+    @orders = Item.find(params[:orders])
     session[:orders] = @orders
+
     @total_amount = params[:total_amount].to_d;
+    session[:total_amount] = @total_amount
+
+    @cart_id = current_user.cart.id
+    session[:cart_id] = @cart_id
+
+
+
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [
@@ -37,14 +38,20 @@ class CheckoutController < ApplicationController
   def success
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
-    # # Récupérer l'ID de l'évènement depuis la session
+    # Récupérer l'ID de l'évènement depuis la session
     puts "*"*100
-    @orders = params[:orders]
-    puts @orders
-    puts params[:orders]
+    puts session[:orders]
+    puts session[:total_amount]
+    puts session[:cart_id]
+    puts "laalalalalalaall"
     puts "*"*100
+    
+    
+    
     # Effacer l'ID de l'évènement de la session
     session.delete(:orders)
+    session.delete(:total_amount)
+    session.delete(:cart_id)
     # # Créer le lien de participation
     # Attendance.create!(stripe_customer_id: params[:session_id], attendee_id: current_user.id, event_id: @event.id)
   end
