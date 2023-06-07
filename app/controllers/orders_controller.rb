@@ -28,28 +28,6 @@ class OrdersController < ApplicationController
   # end
 
   def create
-    @total_amount = params[:total_amount];
-    @session = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          price_data: {
-            currency: 'eur',
-            unit_amount: @total_amount.to_i*100,
-            product_data: {
-              name: 'Rails Stripe Checkout',
-            },
-          },
-          quantity: 1
-        },
-      ],
-      mode: 'payment',
-      success_url: orders_success_url + '?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: orders_cancel_url
-    )
-
-    redirect_to @session.url, allow_other_host: true
-
   end
 
 end
