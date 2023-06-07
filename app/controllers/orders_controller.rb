@@ -47,7 +47,7 @@ class OrdersController < ApplicationController
       success_url: orders_success_url + '?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: orders_cancel_url
     )
-
+   
     redirect_to @session.url, allow_other_host: true
 
   end
