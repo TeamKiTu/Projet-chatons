@@ -47,7 +47,6 @@ body{
 footer {
   margin-top: auto;
   bottom: 0;
-  padding-bottom: 15px;
   width: 100%;
   background-color: #f8bfa2;
 }
@@ -147,4 +146,8 @@ footer {
 #expandedTable {
   margin-left: -10px;
   margin-right: -10px;
+}
+
+.grey-button {
+  background-color: grey !important;
 }

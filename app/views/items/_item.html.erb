@@ -2,7 +2,9 @@
 
   <div class="ind-pic">
     <% if item.image.attached? %>
-      <%= image_tag item.image, class: "w-150 h-150 p-8 ind-item", alt: "product image" %>
+      <%= link_to item do %>
+        <%= image_tag item.image, class: "w-150 h-150 p-8 ind-item", alt: "product image" %>
+      <% end %>
     <% end %>
   </div>
 
@@ -12,7 +14,9 @@
         <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white"><%= link_to item.title, item %></h5>
       </a>
       <p class="text-sm text-slate-700">
-        <%= item.description %>
+        <%= link_to item do %>
+          <%= item.description %>
+        <% end %>
       </p>
     </div>
     <br><br><br>
@@ -23,13 +27,16 @@
 
       <%= button_to "", ""%>
       <% if user_signed_in? %>
+        <% ordered = current_user.ordered_item?(item) %>
         <%= form_for @cart_item, url: cart_items_path, :method => :post do |f| %>
           <%= f.hidden_field :item_id, value: item.id %>
           <%= f.hidden_field :cart_id, value: current_user.cart.id %>
-          <button class="h-10 px-6 font-semibold rounded-md bard-btn mrg-btn-cart" type="submit">Ajouter au panier</button>
+          <button class="h-10 px-6 font-semibold rounded-md bard-btn mrg-btn-cart <%= 'grey-button h-10 px-6 font-semibold rounded-md mrg-btn-cart' if ordered %> " type="submit">
+            <%= ordered ? "Déjà commandé" : "Ajouter au panier" %>
+          </button>
         <% end %>
-      <% else %>
       <% end %>
+
     </div>
   </div>
 </div>
