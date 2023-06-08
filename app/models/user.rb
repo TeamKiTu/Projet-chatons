@@ -15,7 +15,12 @@ class User < ApplicationRecord
   after_update_commit :send_password_change_email, if: :password_changed
 
   def ordered_item?(item)
-    self.orders.joins(:items).where(items: { id: item.id }).exists?
+    CartItem.all.each do |i|
+      if (item.id == i.item_id)
+        return true
+      end
+    end
+    return false
   end
 
   private

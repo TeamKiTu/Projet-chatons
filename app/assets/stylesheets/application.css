@@ -156,5 +156,6 @@ footer {
 }
 
 .grey-button {
-  background-color: grey !important;
+  background-color: rgb(159, 218, 169) !important;
+  color: rgba(68, 62, 62, 0.603) !important;;
 }
