@@ -34,9 +34,6 @@
           <button class="h-10 px-6 font-semibold rounded-md bard-btn mrg-btn-cart <%= 'grey-button h-10 px-6 font-semibold rounded-md mrg-btn-cart' if ordered %> " type="submit">
             <%= ordered ? "Déjà commandé" : "Ajouter au panier" %>
           </button>
-          <% if ordered %>
-            <%= Rails.logger.info "#{current_user.email} has ordered #{item.title}" %>
-          <% end %>
         <% end %>
       <% end %>
 
