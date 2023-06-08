@@ -1,65 +1,82 @@
 <footer class="relative bg-blueGray pt-8 pb-6">
   <div class="container mx-auto px-4">
-    <div class="flex flex-wrap text-left lg:text-left">
+    <div class="flex flex-wrap text-left lg:text-left items-center justify-between">
       <div class="w-full lg:w-6/12 px-4">
         <h4 class="text-3xl fonat-semibold text-blueGray-700">Le Projet des Chatons pour THP</h4>
-        <h5 class="text-lg mt-0 mb-2 text-blueGray-600">
-          Voici le fruit d'une labeur soutenue et répartie sur trois journées prolifiques !
-        </h5>
-        <div class="mt-6 lg:mb-0 mb-6">
-          <button class="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
-            <i class="fab fa-twitter"></i></button><button class="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
-            <i class="fab fa-facebook-square"></i></button><button class="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
-            <i class="fab fa-dribbble"></i></button><button class="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
-            <i class="fab fa-github"></i>
-          </button>
-        </div>
       </div>
-      <div class="w-full lg:w-6/12 px-4">
-        <div class="flex flex-wrap items-top mb-6">
-          <div class="w-full lg:w-4/12 px-4 ml-auto">
-            <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Liens utiles</span>
-            <ul class="list-unstyled">
-              <li>
-                <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="#">A Propos</a>
-              </li>
-              <li>
-                <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="#">Dans les médias</a>
-              </li>
-              <li>
-                <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="#">Notre Github</a>
-              </li>
-              <li>
-                <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="#">Notre politique</a>
-              </li>
-            </ul>
-          </div>
-          <div class="w-full lg:w-4/12 px-4">
-            <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Autres liens</span>
-            <ul class="list-unstyled">
-              <li>
-                <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="#">Nos partenariats</a>
-              </li>
-              <li>
-                <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="#">Termes et conditions</a>
-              </li>
-              <li>
-                <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="#">Délai de rétractation</a>
-              </li>
-              <li>
-                <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="#">Service consommateur</a>
-              </li>
-            </ul>
-          </div>
-        </div>
+      <div class="w-full lg:w-6/12 px-4 flex justify-end">
+        <button class="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+          <a href="https://github.com/TeamKiTu/Projet-chatons" target="_blank"><i class="fab fa-github"></i></a>
+        </button>
       </div>
+
     </div>
+
+    <hr class="my-6 border-blueGray-300">
+
+    <section class="page-section" id="team">
+    <div class="container">
+        <div class="grid grid-cols-5 gap-4">
+            <div>
+                <div class="team-member text-center">
+                    <%= image_tag("1.jpg", class: "h-10 w-10 rounded-full justify-items-center mx-auto", alt:"...") %>
+                    <h4>Nicolas Vadelorge</h4>
+                    <p class="text-muted text-center">Founder</p>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="auto-cols-auto">
+                <div class="team-member text-center">
+                    <%= image_tag("2.jpg", class: "h-10 w-10 rounded-full justify-items-center mx-auto", alt:"...") %>
+                    <h4 class="text-center">Emmanuel Beaugendre</h4>
+                    <p class="text-muted text-center">Founder</p>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="auto-cols-auto">
+                <div class="team-member text-center">
+                    <%= image_tag("3.jpg", class: "h-10 w-10 rounded-full justify-items-center mx-auto", alt:"...") %>
+                    <h4 class="text-center">Nicolas Chiron</h4>
+                    <p class="text-muted text-center">Founder</p>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="auto-cols-auto">
+                <div class="team-member text-center">
+                    <%= image_tag("1.jpg", class: "h-10 w-10 rounded-full justify-items-center mx-auto", alt:"...") %>
+                    <h4 class="text-center">Vincent Deloffre</h4>
+                    <p class="text-muted text-center">Founder</p>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="auto-cols-auto">
+                <div class="team-member text-center">
+                    <%= image_tag("1.jpg", class: "h-10 w-10 rounded-full justify-items-center mx-auto", alt:"...") %>
+                    <h4 class="text-center">Guillaume Regimbeau</h4>
+                    <p class="text-muted text-center">Founder</p>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
     <hr class="my-6 border-blueGray-300">
     <div class="flex flex-wrap items-center md:justify-between justify-center">
       <div class="w-full md:w-4/12 px-4 mx-auto text-center">
         <div class="text-sm text-blueGray-500 font-semibold py-1">
-          Copyright © <span id="get-current-year">2023</span><a href="https://www.creative-tim.com/product/notus-js" class="text-blueGray-500 hover:text-gray-800" target="_blank"> Le Projet des Chatons
-          <a href="https://www.creative-tim.com?ref=njs-profile" class="text-blueGray-500 hover:text-blueGray-800">Pour THP</a>
+          Copyright © <span id="get-current-year">2023</span>
+          <a href="https://www.thehackingproject.org/" class="text-blueGray-500 hover:text-blueGray-800">| Le Projet des Chatons pour THP |</a>
         </div>
       </div>
     </div>
