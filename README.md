@@ -1,18 +1,25 @@
 ### THP W10 - CRASH TEST - KITTENS PROJECT
    [![forthebadge](https://forthebadge.com/images/badges/made-with-ruby.svg)](https://forthebadge.com)
-   [![forthebadge]("https://forthebadge.com/images/badges/no-ragrets.svg)](https://forthebadge.com)
+   [![forthebadge](https://forthebadge.com/images/badges/no-ragrets.svg)](https://forthebadge.com)
    [![forthebadge](https://forthebadge.com/images/badges/powered-by-coffee.svg)](https://forthebadge.com)
 
 Made with passion and care ❤️
 
-Learning RoR(Ruby on Rails) with our previous database to show the app in website with html views
+Creating our first website in team as TeamKiTu
+
+The new e-commece website from THP
+Discover and buy all kitten's images on it ! Enjoy :)
 
 
-It's like Facebook but only with gossips! You will enjoy this !
+## Installation
 
+* Creating lucidapp and our database
 * Creating and modeling our models
 * Managing migration to play with our tables
 * Coding views(landing pages), roads and controllers
+* Adding stripe platform
+* Adding devise for Users
+* Adding ActiveStorage
 
 ## Installation
 
@@ -31,3 +38,13 @@ It's like Facebook but only with gossips! You will enjoy this !
 ## Requirements
 
 Ruby 3.0.0  
+
+
+## Special thanks
+
+
+- @NicolasCHIRON
+- @Videloff
+- @SmartDevSource
+- @gregimbeau
+- @NicolasVdev
