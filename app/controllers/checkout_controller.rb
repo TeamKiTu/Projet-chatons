@@ -61,6 +61,7 @@ class CheckoutController < ApplicationController
     session.delete(:total_amount)
     session.delete(:cart_id)
     # # Créer le lien de participation
+    Order.create!(user_id: current_user.id, 
     # Attendance.create!(stripe_customer_id: params[:session_id], attendee_id: current_user.id, event_id: @event.id)
   end
 
