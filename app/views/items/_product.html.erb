@@ -18,7 +18,7 @@
       <div class="md:flex-1 px-4">
         <div x-data="{ image: 1 }" x-cloak>
           <div class="flex items-center justify-center">
-            <img src="<%= @item.image_url %>" class="rounded-full"/>
+          <%= image_tag @item.image, class: "rounded-full", alt: "Item Image" %>
           </div>
 
           <p class = "text-center pt-6 text-slate-950">Contenu similaire</p><br>

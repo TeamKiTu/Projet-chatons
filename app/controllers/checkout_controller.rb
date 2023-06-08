@@ -40,7 +40,19 @@ class CheckoutController < ApplicationController
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
     # Récupérer l'ID de l'évènement depuis la session
     puts "*"*100
-    puts session[:orders]
+    @orders = session[:orders]
+    @cart_id = session[:cart_id]
+
+
+    @orders.each do |item|
+      item_id = item[:id]
+      puts item_id
+      puts item
+
+      puts @cart_id
+            puts "$*" * 90
+    end
+
     puts session[:total_amount]
     puts session[:cart_id]
     puts "laalalalalalaall"
