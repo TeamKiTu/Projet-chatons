@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for projetchatons on 2023-06-07T09:56:51+02:00
+# fly.toml app configuration file generated for leprojetchaton on 2023-06-08T14:57:17+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "projetchatons"
+app = "leprojetchaton"
 primary_region = "cdg"
 console_command = "/rails/bin/rails console"
 
