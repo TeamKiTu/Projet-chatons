@@ -158,3 +158,13 @@ footer {
 .grey-button {
   background-color: grey !important;
 }
+
+.green-button {
+  background-color: green !important;
+  color: white !important;
+}
+
+.pale-bard-btn {
+  background-color: rgb(159, 218, 169) !important;
+  color: rgba(68, 62, 62, 0.603) !important;;
+}
