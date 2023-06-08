@@ -2,7 +2,9 @@
 
   <div class="ind-pic">
     <% if item.image.attached? %>
-      <%= image_tag item.image, class: "w-150 h-150 p-8 ind-item", alt: "product image" %>
+      <%= link_to item do %>
+        <%= image_tag item.image, class: "w-150 h-150 p-8 ind-item", alt: "product image" %>
+      <% end %>
     <% end %>
   </div>
 
@@ -12,7 +14,9 @@
         <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white"><%= link_to item.title, item %></h5>
       </a>
       <p class="text-sm text-slate-700">
-        <%= item.description %>
+        <%= link_to item do %>
+          <%= item.description %>
+        <% end %>
       </p>
     </div>
     <br><br><br>
