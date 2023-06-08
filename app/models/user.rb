@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   after_create :send_welcome
   has_one :cart
+  has_many :orders, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
