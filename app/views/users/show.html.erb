@@ -2,16 +2,16 @@
   <table id="mainTable" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="text-xs uppercase nav-color powder">
       <tr>
-        <th scope="col" class="px-6 py-3 text-center">
+        <th class="px-6 py-3 text-center">
           Commandes passées
         </th>
-        <th scope="col" class="px-6 py-3 text-center">
+        <th class="px-6 py-3 text-center">
           Date de l'achat
         </th>
-        <th scope="col" class="px-6 py-3 text-center">
+        <th class="px-6 py-3 text-center">
           Prix total
         </th>
-        <th scope="col" class="px-6 py-3 text-center">
+        <th class="px-6 py-3 text-center">
           Voir détail de la commande
         </th>
       </tr>
@@ -26,14 +26,48 @@
             <%= order[:created_at] %>
           </td>
           <td class="px-6 py-3">
-          <% price = 0 %>
+            <% price = 0 %>
             <% order.items.each do |item| %>
               <% price += item.price %>
             <% end %>
-          <%= price %>€
+            <%= price %>€
           </td>
           <td class="px-6 py-3">
-            <button onclick="expandTable(this, '<%= order.id %>')">Afficher détails</button>
+            <button onclick="toggleDetails(this)">Afficher détails</button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <table class="details-table hidden w-fit">
+              <thead class="text-xs uppercase nav-color powder text-center w-full">
+                <tr>
+                  <th></th>
+                  <th class="px-6 py-3 text-center">
+                    Produits
+                  </th>
+                  <th class="px-6 py-3 text-center">
+                    Prix unitaire
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="nav-item-color powder w-fit">
+                <% order.items.each do |item| %>
+                  <tr class="w-max">
+                    <td>
+                      <% if item.image.attached? %>
+                        <%= image_tag item.image, class: "h-16 w-16 rounded" %>
+                      <% end %>
+                    </td>
+                    <td class="px-6 py-3">
+                      <%= item.title %>
+                    </td>
+                    <td class="px-6 py-3">
+                      <%= item.price %>€
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
           </td>
         </tr>
       <% end %>
@@ -43,56 +77,9 @@
 
 
 <script>
-  function expandTable(button, id) {
-    var mainTable = document.getElementById("mainTable");
-    var rowIndex = button.parentNode.parentNode.rowIndex;
-    var IdButton = id;
-
-    var expandedRow = mainTable.insertRow(rowIndex + 1);
-    var expandedCell = expandedRow.insertCell(0);
-    expandedCell.colSpan = mainTable.rows[0].cells.length;
-
-    var expandedTable = document.createElement("table");
-expandedTable.className = "w-full text-sm text-left text-gray-500 dark:text-gray-400";
-expandedTable.innerHTML = `
-  <thead class="text-xs uppercase nav-item-color powder text-center">
-    <tr>
-      <th></th>
-      <th scope="col" class="px-6 py-3 text-center">
-        Produits
-      </th>
-      <th scope="col" class="px-6 py-3 text-center">
-        Prix unitaire
-      </th>
-    </tr>
-  </thead>
-  <tbody class="nav-item-color powder text-center">
-    <% @orders.sort.each do |order| %>
-    <% '${IdButton}' %>
-      <% if order.id == '${IdButton}' %>
-        <tr>
-          <td style="height:150px; width:150px;">
-            <% if order.items.image.attached? %>
-              <%= image_tag order.items.image %>
-            <% end %>
-          </td>
-          <td class="px-6 py-3">
-            <%= order.items[i].title %>
-          </td>
-          <td class="px-6 py-3">
-            <%= order.items[i].price %>€
-          </td>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-`;
-
-    expandedCell.appendChild(expandedTable);
-
-    button.onclick = function() {
-      expandedTable.classList.toggle("hidden");
-      button.innerText = expandedTable.classList.contains("hidden") ? "Afficher détails" : "Masquer détails";
-    };
+  function toggleDetails(button) {
+    var detailsTable = button.parentNode.parentNode.nextElementSibling.querySelector(".details-table");
+    detailsTable.classList.toggle("hidden");
+    button.innerText = detailsTable.classList.contains("hidden") ? "Afficher détails" : "Masquer détails";
   }
 </script>
