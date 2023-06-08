@@ -14,8 +14,13 @@ class User < ApplicationRecord
 
   after_update_commit :send_password_change_email, if: :password_changed
 
-  def item_in_cart?(item)
-    cart.items.include?(item)
+  def ordered_item?(item)
+    CartItem.all.each do |i|
+      if (item.id == i.item_id)
+        return true
+      end
+    end
+    return false
   end
   
   private
