@@ -25,20 +25,18 @@
         <%=add_zero(item.price)%> €
       </span>
 
-      <%= button_to "", ""%>
-      <% if user_signed_in? %>
-        <% ordered = current_user.ordered_item?(item) %>
-        <%= form_for @cart_item, url: cart_items_path, :method => :post do |f| %>
-          <%= f.hidden_field :item_id, value: item.id %>
-          <%= f.hidden_field :cart_id, value: current_user.cart.id %>
-          <button class="h-10 px-6 font-semibold rounded-md bard-btn mrg-btn-cart <%= 'grey-button h-10 px-6 font-semibold rounded-md mrg-btn-cart' if ordered %> " type="submit">
-            <%= ordered ? "Déjà commandé" : "Ajouter au panier" %>
-          </button>
-          <% if ordered %>
-            <%= Rails.logger.info "#{current_user.email} has ordered #{item.title}" %>
+        <% if user_signed_in? %>
+          <% in_cart = current_user.item_in_cart?(item) %>
+          <%= form_for @cart_item, url: cart_items_path, :method => :post do |f| %>
+            <%= f.hidden_field :item_id, value: item.id %>
+            <%= f.hidden_field :cart_id, value: current_user.cart.id %>
+            <button class="<%= in_cart ? 'pale-bard-btn' : 'bard-btn' %> h-10 px-6 font-semibold rounded-md mrg-btn-cart" <%= 'disabled' if in_cart %> type="submit">
+              <%= in_cart ? "Déjà dans votre panier" : "Ajouter au panier" %>
+            </button>
           <% end %>
         <% end %>
-      <% end %>
+
+
 
     </div>
   </div>

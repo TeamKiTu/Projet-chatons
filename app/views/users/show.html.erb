@@ -16,105 +16,83 @@
         </th>
       </tr>
     </thead>
-    <tbody class="nav-item-color powder">
-      <tr>
-        <td class="px-6 py-3">
-          0015AD484T
-        </td>
-        <td class="px-6 py-3">
-          01/12/2022
-        </td>
-        <td class="px-6 py-3">
-          232,99€
-        </td>
-        <td class="px-6 py-3">
-          <button onclick="expandTable(this)">Afficher détails</button>
-        </td>
-      </tr>
-      <tr>
-        <td class="px-6 py-3">
-          0015AD484T
-        </td>
-        <td class="px-6 py-3">
-          01/12/2022
-        </td>
-        <td class="px-6 py-3">
-          232,99€
-        </td>
-        <td class="px-6 py-3">
-          <button onclick="expandTable(this)">Afficher détails</button>
-        </td>
-      </tr>
+    <tbody class="nav-item-color powder text-center">
+      <% @orders.sort.each do |order| %>
+        <tr>
+          <td class="px-6 py-3">
+            <%= order.id %>
+          </td>
+          <td class="px-6 py-3">
+            <%= order[:created_at] %>
+          </td>
+          <td class="px-6 py-3">
+          <% price = 0 %>
+            <% order.items.each do |item| %>
+              <% price += item.price %>
+            <% end %>
+          <%= price %>€
+          </td>
+          <td class="px-6 py-3">
+            <button onclick="expandTable(this, '<%= order.id %>')">Afficher détails</button>
+          </td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
 
 
 <script>
-  function expandTable(button) {
-  var mainTable = document.getElementById("mainTable");
-  var rowIndex = button.parentNode.parentNode.rowIndex;
+  function expandTable(button, id) {
+    var mainTable = document.getElementById("mainTable");
+    var rowIndex = button.parentNode.parentNode.rowIndex;
+    var IdButton = id;
 
-  var expandedRow = mainTable.insertRow(rowIndex + 1);
-  var expandedCell = expandedRow.insertCell(0);
-  expandedCell.colSpan = mainTable.rows[0].cells.length;
+    var expandedRow = mainTable.insertRow(rowIndex + 1);
+    var expandedCell = expandedRow.insertCell(0);
+    expandedCell.colSpan = mainTable.rows[0].cells.length;
 
-  var expandedTable = document.createElement("table");
-  expandedTable.className = "w-full text-sm text-left text-gray-500 dark:text-gray-400";
-  expandedTable.innerHTML = `
-    <thead class="text-xs uppercase nav-item-color powder">
-      <tr>
-        <th scope="col" class="px-6 py-3 text-center">
-          Produits
-        </th>
-        <th scope="col" class="px-6 py-3 text-center">
-          Quantité
-        </th>
-        <th scope="col" class="px-6 py-3 text-center">
-          Prix unitaire
-        </th>
-        <th scope="col" class="px-6 py-3 text-center">
-          Prix total
-        </th>
-      </tr>
-    </thead>
-    <tbody class="nav-item-color powder">
-      <tr>
-        <td class="px-6 py-3">
-          Article 1
-        </td>
-        <td class="px-6 py-3">
-          2
-        </td>
-        <td class="px-6 py-3">
-          50€
-        </td>
-        <td class="px-6 py-3">
-          100€
-        </td>
-      </tr>
-      <tr>
-        <td class="px-6 py-3">
-          Article 2
-        </td>
-        <td class="px-6 py-3">
-          1
-        </td>
-        <td class="px-6 py-3">
-          80€
-        </td>
-        <td class="px-6 py-3">
-          80€
-        </td>
-      </tr>
-    </tbody>
-  `;
+    var expandedTable = document.createElement("table");
+expandedTable.className = "w-full text-sm text-left text-gray-500 dark:text-gray-400";
+expandedTable.innerHTML = `
+  <thead class="text-xs uppercase nav-item-color powder text-center">
+    <tr>
+      <th></th>
+      <th scope="col" class="px-6 py-3 text-center">
+        Produits
+      </th>
+      <th scope="col" class="px-6 py-3 text-center">
+        Prix unitaire
+      </th>
+    </tr>
+  </thead>
+  <tbody class="nav-item-color powder text-center">
+    <% @orders.sort.each do |order| %>
+    <% '${IdButton}' %>
+      <% if order.id == '${IdButton}' %>
+        <tr>
+          <td style="height:150px; width:150px;">
+            <% if order.items.image.attached? %>
+              <%= image_tag order.items.image %>
+            <% end %>
+          </td>
+          <td class="px-6 py-3">
+            <%= order.items[i].title %>
+          </td>
+          <td class="px-6 py-3">
+            <%= order.items[i].price %>€
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+`;
 
-  expandedCell.appendChild(expandedTable);
+    expandedCell.appendChild(expandedTable);
 
-  button.onclick = function() {
-    expandedTable.classList.toggle("hidden");
-    button.innerText = expandedTable.classList.contains("hidden") ? "Afficher détails" : "Masquer détails";
-  };
-}
+    button.onclick = function() {
+      expandedTable.classList.toggle("hidden");
+      button.innerText = expandedTable.classList.contains("hidden") ? "Afficher détails" : "Masquer détails";
+    };
+  }
 </script>
