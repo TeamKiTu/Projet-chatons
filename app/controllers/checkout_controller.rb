@@ -38,19 +38,15 @@ class CheckoutController < ApplicationController
   def success
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
-    # Récupérer l'ID de l'évènement depuis la session
-    puts "*"*100
+    # Récupérer les ID nécessaires depuis la session
     @orders = session[:orders]
     @cart_id = session[:cart_id]
 
-
+    # Vider le panier
     @orders.each do |item|
-      item_id = item[:id]
-      puts item_id
-      puts item
-
-      puts @cart_id
-            puts "$*" * 90
+      item_id = item["id"]
+      cart_item = CartItem.find_by(item_id:item_id, cart_id: @cart_id)
+      cart_item.delete
     end
 
     puts session[:total_amount]
