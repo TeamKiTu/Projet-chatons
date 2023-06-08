@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  resources :orders, only: [:new, :create]
+
   
   resources :carts, except:[:index, :new, :edit]
   resources :cart_items, only:[:create, :update, :destroy]
-  devise_for :users
+
+  devise_for :users do
+    resources :orders, only: [:new, :create]
+  end
+  
   resources :users, only:[:show]
   resources :items
 
@@ -14,5 +18,4 @@ Rails.application.routes.draw do
   end
 
   root "items#index"
-
 end

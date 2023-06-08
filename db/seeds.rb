@@ -15,7 +15,6 @@ CartItem.destroy_all
 #    image_url: "https://loremflickr.com/#{rand(290..300)}/#{rand(290..300)}/kitten"
 #  )
 #end
-
 s3 = Aws::S3::Resource.new(
   region: 'eu-west-3', # change this to your AWS region
   access_key_id: ENV['AMAZON_ACCESS_KEY_ID'],
@@ -24,9 +23,22 @@ s3 = Aws::S3::Resource.new(
 
 bucket = s3.bucket('grgb') # change this to your bucket name
 
+titles = [
+  'Magnifique chaton unique',
+  'Un chaton nommé Raymond',
+  'Attention au camion pauvre chaton',
+  'Chaton bien mignon...',
+  'Bien plus qu\'un chaton',
+  'Ce chaton sort de prison',
+  'Chaton tueur de hannetons',
+  'Chaton qui tourne pas rond',
+  'Il peut aussi jouer du violon ce chaton',
+  'C\'est rien c\'est juste un chaton'
+]
+
 10.times do
   item = Item.create(
-    title: Faker::Commerce.product_name,
+    title: titles.shift,
     description: Faker::Lorem.paragraph,
     price: "%.2f"%rand(0.0..100.0),
   )
