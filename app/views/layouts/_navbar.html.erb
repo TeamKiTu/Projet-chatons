@@ -16,16 +16,16 @@
               <%= image_tag("cart.png", class: "w-7 h-7 object-cover rounded-full") %>
             </div>
             <% if current_user %>
-            <% if current_user.cart.cart_items.count == 1 %>
-              <div class="text-white block px-4 py-2"><%= current_user.cart.cart_items.count %> article</strong>
-            <% elsif current_user.cart.cart_items.count > 1 %>
-              <div class="text-white block px-4 py-2"><%= current_user.cart.cart_items.count %> articles</strong>
+              <% if current_user.cart.cart_items.count == 1 %>
+                <div class="text-white block px-4 py-2"><%= current_user.cart.cart_items.count %> article</strong>
+              <% elsif current_user.cart.cart_items.count > 1 %>
+                <div class="text-white block px-4 py-2"><%= current_user.cart.cart_items.count %> articles</strong>
+              <% else %>
+                <div class="text-white block px-4 py-2">Votre panier est vide</strong>
+              <% end %>
             <% else %>
               <div class="text-white block px-4 py-2">Votre panier est vide</strong>
             <% end %>
-          <% else %>
-            <div class="text-white block px-4 py-2">Votre panier est vide</strong>
-          <% end %>
           </button>
           <!-- Dropdown menu -->
           <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
@@ -33,8 +33,11 @@
             <div class="py-1">
               <%= link_to "Afficher le panier", cart_path(current_user.id), class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white" %>
             </div>
+            <% if current_user&.orders.count > 0 %>
+              <%= link_to "Historique d'achat", user_path(current_user.id), class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white" %>
+            <% end %>
             <% else %>
-              <%= link_to "Se connecter", new_user_session_path, class:"block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
+              <p class="text-center">Votre panier est vide. <%= link_to "Connectez-vous pour commencer a le remplir.", new_user_session_path, class:"block px-4 py-2 hover:bg-gray-100 primary" %></p>
             <% end %>
           </div>
         </li>
