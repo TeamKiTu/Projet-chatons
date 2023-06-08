@@ -7,13 +7,6 @@ body{
   flex-direction: column;
 }
 
-/* button.stripe-button-el,
-button.stripe-button-el>span {
-  background-color: #EB649C !important;
-  background-image: none;
-  margin : 0;
-} */
-
 .border-darkwarning{
   border: 2px solid #fabc85;
   box-shadow: 0 0 10px #fcd4b2;
@@ -157,5 +150,5 @@ footer {
 
 .grey-button {
   background-color: rgb(159, 218, 169) !important;
-  color: rgba(68, 62, 62, 0.603) !important;;
+  color: rgba(68, 62, 62, 0.603) !important;
 }

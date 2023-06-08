@@ -22,7 +22,7 @@ class User < ApplicationRecord
     end
     return false
   end
-
+  
   private
 
   def send_welcome
