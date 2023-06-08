@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   after_create :send_welcome
   has_one :cart
+  has_many :orders, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -12,6 +13,10 @@ class User < ApplicationRecord
   end
 
   after_update_commit :send_password_change_email, if: :password_changed
+
+  def ordered_item?(item)
+    self.orders.joins(:items).where(items: { id: item.id }).exists?
+  end
 
   private
 
