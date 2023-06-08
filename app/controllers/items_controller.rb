@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
     @cart_item = CartItem.new
+    @in_cart_items = CartItem.all;
   end
 
   # GET /items/1 or /items/1.json
