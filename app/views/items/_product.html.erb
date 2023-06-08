@@ -76,11 +76,14 @@
             </svg>
           </div>
 
-          <% if user_signed_in? %>
-          <%= form_for @cart_item, url: cart_items_path, :method => :post do |f| %>
+        <% if user_signed_in? %>
+          <% ordered = current_user.ordered_item?(@item) %>
+          <%= form_for @cart_item, url: ordered ? cart_item_path(id: @item.id) : cart_items_path, :method => ordered ? :delete : :post do |f| %>
             <%= f.hidden_field :item_id, value: @item.id %>
             <%= f.hidden_field :cart_id, value: current_user.cart.id %>
-            <button class="h-10 px-6 font-semibold rounded-md bg-black text-white" type="submit">Ajouter au panier</button>
+            <button class="h-10 px-6 font-semibold rounded-md bard-btn mrg-btn-cart <%= 'grey-button h-10 px-6 font-semibold rounded-md mrg-btn-cart' if ordered %> " type="submit">
+              <%= ordered ? "Retirer du panier" : "Ajouter au panier" %>
+            </button>
           <% end %>
         <% else %>
         <% end %>
