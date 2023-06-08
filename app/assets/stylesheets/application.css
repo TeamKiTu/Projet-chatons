@@ -152,3 +152,6 @@ footer {
   background-color: rgb(159, 218, 169) !important;
   color: rgba(68, 62, 62, 0.603) !important;
 }
+#modal {
+  z-index: 9999; /* Valeur de z-index élevée pour afficher l'image au-dessus de la barre de navigation */
+}
