@@ -1,28 +1,35 @@
-### THP W10 - CRASH TEST - KITTENS PROJECT
    [![forthebadge](https://forthebadge.com/images/badges/made-with-ruby.svg)](https://forthebadge.com)
    [![forthebadge](https://forthebadge.com/images/badges/no-ragrets.svg)](https://forthebadge.com)
    [![forthebadge](https://forthebadge.com/images/badges/powered-by-coffee.svg)](https://forthebadge.com)
+   
+   ### THP W10 - CRASH TEST - KITTENS PROJECT
 
+![alt text](https://lh3.googleusercontent.com/erNBKisJ1SUcMbK4owjy-t3m62RamihN0MhXL28zrzBVlK_QFT8LqlA3rVkIC8AH2L8X4k_l9c0Fz70MUc3H3F0nlc7DfyMG9DXsNxQz)
+
+<br>
 Made with passion and care ❤️
 
-Creating our first website in team as TeamKiTu
+Creating our first website in team as [TeamKiTu](https://github.com/TeamKiTu)
 
-The new e-commece website from THP
-Discover and buy all kitten's images on it ! Enjoy :)
+The new e-commerce website from THP : https://le-projet-chatons.herokuapp.com/
+<br>
+Discover and buy all kitten's images on it ! Enjoy 😻
 
 
-## Installation
+## Process
 
+* Creating our app with Tailwindcss
 * Creating lucidapp and our database
 * Creating and modeling our models
 * Managing migration to play with our tables
 * Coding views(landing pages), roads and controllers
 * Adding stripe platform
 * Adding devise for Users
-* Adding ActiveStorage
+* Adding ActiveStorage and Amazon Web Service(AWS)
+* Mailers with BREVO
+* Deploying on Heroku and Fly
 
 ## Installation
-
 
 * `Git clone` #cloning this repo
 * `bundle install` #installing the Ruby's gems
@@ -38,13 +45,12 @@ Discover and buy all kitten's images on it ! Enjoy :)
 ## Requirements
 
 Ruby 3.0.0  
-
+Rails 7.0.5
 
 ## Special thanks
 
-
-- @NicolasCHIRON
-- @Videloff
-- @SmartDevSource
-- @gregimbeau
-- @NicolasVdev
+- [NicolasCHIRON](https://github.com/NicolasCHIRON)
+- [Videloff](https://github.com/Videloff)
+- [SmartDevSource](https://github.com/SmartDevSource)
+- [gregimbeau](https://github.com/gregimbeau)
+- [NicolasVdev](https://github.com/NicolasVdev)
