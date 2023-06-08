@@ -42,6 +42,13 @@ class CheckoutController < ApplicationController
     @orders = session[:orders]
     @cart_id = session[:cart_id]
 
+    # Créer les orders_items
+    @order = Order.create!(user_id: current_user.id)
+    @orders.each do |item|
+      item_id = item["id"]
+      order_item = OrderItem.create!(item_id: item_id,order_id:@order.id)
+    end
+
     # Vider le panier
     @orders.each do |item|
       item_id = item["id"]
@@ -60,9 +67,7 @@ class CheckoutController < ApplicationController
     session.delete(:orders)
     session.delete(:total_amount)
     session.delete(:cart_id)
-    # # Créer le lien de participation
-    # Attendance.create!(stripe_customer_id: params[:session_id], attendee_id: current_user.id, event_id: @event.id)
-  end
+   end
 
 
   def cancel
