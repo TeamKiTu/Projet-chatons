@@ -67,7 +67,10 @@ class CheckoutController < ApplicationController
     session.delete(:orders)
     session.delete(:total_amount)
     session.delete(:cart_id)
-   end
+
+    # Forcer le rechargement des données de l'utilisateur pour prendre en compte la nouvelle commande
+    current_user.reload
+  end
 
 
   def cancel
