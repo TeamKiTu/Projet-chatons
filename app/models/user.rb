@@ -14,6 +14,10 @@ class User < ApplicationRecord
 
   after_update_commit :send_password_change_email, if: :password_changed
 
+  def ordered_item?(item)
+    self.orders.joins(:items).where(items: { id: item.id }).exists?
+  end
+
   private
 
   def send_welcome

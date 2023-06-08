@@ -27,13 +27,19 @@
 
       <%= button_to "", ""%>
       <% if user_signed_in? %>
+        <% ordered = current_user.ordered_item?(item) %>
         <%= form_for @cart_item, url: cart_items_path, :method => :post do |f| %>
           <%= f.hidden_field :item_id, value: item.id %>
           <%= f.hidden_field :cart_id, value: current_user.cart.id %>
-          <button class="h-10 px-6 font-semibold rounded-md bard-btn mrg-btn-cart" type="submit">Ajouter au panier</button>
+          <button class="h-10 px-6 font-semibold rounded-md bard-btn mrg-btn-cart <%= 'grey-button h-10 px-6 font-semibold rounded-md mrg-btn-cart' if ordered %> " type="submit">
+            <%= ordered ? "Déjà commandé" : "Ajouter au panier" %>
+          </button>
+          <% if ordered %>
+            <%= Rails.logger.info "#{current_user.email} has ordered #{item.title}" %>
+          <% end %>
         <% end %>
-      <% else %>
       <% end %>
+
     </div>
   </div>
 </div>
