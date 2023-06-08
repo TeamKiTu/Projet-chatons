@@ -38,22 +38,24 @@
         </tr>
         <tr>
           <td colspan="4">
-            <table class="details-table hidden w-fit">
-              <thead class="text-xs uppercase nav-color powder text-center w-full">
+            <table class="details-table hidden w-fit text-center w-full">
+              <thead class="text-xs uppercase nav-item-color text-center powder">
                 <tr>
-                  <th></th>
                   <th class="px-6 py-3 text-center">
                     Produits
+                  </th>
+                  <th class="px-6 py-3 text-center">
+                    Descriptions
                   </th>
                   <th class="px-6 py-3 text-center">
                     Prix unitaire
                   </th>
                 </tr>
               </thead>
-              <tbody class="nav-item-color powder w-fit">
+              <tbody class="nav-item-color powder text-center w-fit">
                 <% order.items.each do |item| %>
                   <tr class="w-max">
-                    <td>
+                    <td class=" pl-6 py-3 pb-3">
                       <% if item.image.attached? %>
                         <%= image_tag item.image, class: "h-16 w-16 rounded" %>
                       <% end %>
@@ -74,7 +76,6 @@
     </tbody>
   </table>
 </div>
-
 
 <script>
   function toggleDetails(button) {
